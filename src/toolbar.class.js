@@ -20,6 +20,7 @@
 		nextEl: null,
 		captionEl: null,
 		captionContentEl: null,
+		chooseEl:null,
 		currentCaption: null,
 		settings: null,
 		cache: null,
@@ -116,6 +117,8 @@
 			if (this.settings.preventSlideshow && !Util.isNothing(this.playEl)){
 				Util.DOM.hide(this.playEl);
 			}
+			
+			this.chooseEl = Util.DOM.find('.' + PhotoSwipe.Toolbar.CssClasses.choose, this.toolbarEl)[0];
 			
 			this.nextEl = Util.DOM.find('.' + PhotoSwipe.Toolbar.CssClasses.next, this.toolbarEl)[0];
 			this.previousEl = Util.DOM.find('.' + PhotoSwipe.Toolbar.CssClasses.previous, this.toolbarEl)[0];
@@ -364,6 +367,9 @@
 			}
 			else if (e.target === this.playEl || Util.DOM.isChildOf(e.target, this.playEl)){
 				action = PhotoSwipe.Toolbar.ToolbarAction.play;
+			}
+			else if (e.target === this.chooseEl || Util.DOM.isChildOf(e.target, this.chooseEl)){
+				action = PhotoSwipe.Toolbar.ToolbarAction.choose;
 			}
 			
 			this.setTimeout();

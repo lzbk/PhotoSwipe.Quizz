@@ -21,6 +21,8 @@
 		playDisabled: 'ps-toolbar-play-disabled',
 		previous: 'ps-toolbar-previous',
 		previousDisabled: 'ps-toolbar-previous-disabled',
+		choose: 'ps-toolbar-choose',
+		chooseDisabled: 'ps-toolbar-choose-disabled',
 		next: 'ps-toolbar-next',
 		nextDisabled: 'ps-toolbar-next-disabled'
 	};
@@ -32,6 +34,7 @@
 		play: 'play',
 		next: 'next',
 		previous: 'previous',
+		choose: 'choose',
 		none: 'none'
 	};
 	
@@ -49,7 +52,7 @@
 	
 	PhotoSwipe.Toolbar.getToolbar = function(){
 		
-		return '<div class="' + PhotoSwipe.Toolbar.CssClasses.close + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.play + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.previous + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.next + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div>';
+		return '<div class="' + PhotoSwipe.Toolbar.CssClasses.close + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.play + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.choose + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.previous + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.next + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div>';
 		
 	};
 	

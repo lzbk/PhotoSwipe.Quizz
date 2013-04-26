@@ -18,14 +18,14 @@
 		
 		<buildnumber/>
 	
-		<echo>Building = ${project.build.version}</echo>
+		<echo>Building = ${project.build.version}-${project.quizz.version}</echo>
 		
 		<!-- Delete and re-create working and artifact directory -->
 		<delete dir="${project.build.workdir}"/>
-		<delete dir="${project.build.artifactdir}/${project.build.version}"/>
+		<delete dir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}"/>
 		
 		<mkdir dir="${project.build.workdir}"/>
-		<mkdir dir="${project.build.artifactdir}/${project.build.version}"/>
+		<mkdir dir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}"/>
 		
 		<antcall target="checkJS" />
 		
@@ -68,7 +68,7 @@
 	
 	<target name="buildNoUtilJs">
 		
-		<concat destfile="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}.js">	
+		<concat destfile="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}-${project.quizz.version}.js">	
 			
 			<fileset dir="." includes="${project.src.dir}/image.js" />
 			<fileset dir="." includes="${project.src.dir}/image.class.js" />
@@ -85,23 +85,25 @@
 			<fileset dir="." includes="${project.src.dir}/uilayer.class.js" />
 			<fileset dir="." includes="${project.src.dir}/zoompanrotate.js" />
 			<fileset dir="." includes="${project.src.dir}/zoompanrotate.class.js" />
+			<fileset dir="." includes="${project.src.dir}/quizz.js" />
+			<fileset dir="." includes="${project.src.dir}/quizz.class.js" />
 			<fileset dir="." includes="${project.src.dir}/photoswipe.js" />
 			<fileset dir="." includes="${project.src.dir}/photoswipe.class.js" />
 		
 		</concat>
 		
 		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}.js"/>
+			<param name="filePath" value="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}-${project.quizz.version}.js"/>
 		</antcall>
 		
 		<antcall target="minimizeJS">
 			<param name="dir" value="${project.build.workdir}/noutil" />
-			<param name="file" value="code.photoswipe.noutil${engine}-${project.build.version}.js"/>
-			<param name="output" value="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}.min.js"/>
+			<param name="file" value="code.photoswipe.noutil${engine}-${project.build.version}-${project.quizz.version}.js"/>
+			<param name="output" value="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}-${project.quizz.version}.min.js"/>
 		</antcall>
 		
 		<antcall target="addLicense">
-			<param name="file" value="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}.min.js"/>
+			<param name="file" value="${project.build.workdir}/noutil/code.photoswipe.noutil${engine}-${project.build.version}-${project.quizz.version}.min.js"/>
 		</antcall>
 		
 	</target>
@@ -110,7 +112,7 @@
 	
 	<target name="buildJs">
 		
-		<concat destfile="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}.js">	
+		<concat destfile="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}-${project.quizz.version}.js">	
 			
 			<fileset dir="." includes="${project.src.dir}/lib/code.util-${lib.code.util.version}/src/util.js" />
 			<fileset dir="." includes="${project.src.dir}/lib/code.util-${lib.code.util.version}/src/browser.js" />
@@ -119,6 +121,7 @@
 			<fileset dir="." includes="${project.src.dir}/lib/code.util-${lib.code.util.version}/src/animation.js" />
 			<fileset dir="." includes="${project.src.dir}/lib/code.util-${lib.code.util.version}/src/touchelement.js" />
 			<fileset dir="." includes="${project.src.dir}/lib/code.util-${lib.code.util.version}/src/touchelement.class.js" />
+			<fileset dir="." includes="${project.src.dir}/lib/code.util-${lib.code.util.version}/src/json${engine}.js" />
 			
 			<fileset dir="." includes="${project.src.dir}/image.js" />
 			<fileset dir="." includes="${project.src.dir}/image.class.js" />
@@ -135,23 +138,25 @@
 			<fileset dir="." includes="${project.src.dir}/uilayer.class.js" />
 			<fileset dir="." includes="${project.src.dir}/zoompanrotate.js" />
 			<fileset dir="." includes="${project.src.dir}/zoompanrotate.class.js" />
+			<fileset dir="." includes="${project.src.dir}/quizz.js" />
+			<fileset dir="." includes="${project.src.dir}/quizz.class.js" />
 			<fileset dir="." includes="${project.src.dir}/photoswipe.js" />
 			<fileset dir="." includes="${project.src.dir}/photoswipe.class.js" />
 		
 		</concat>
 		
 		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}.js"/>
+			<param name="filePath" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}-${project.quizz.version}.js"/>
 		</antcall>
 		
 		<antcall target="minimizeJS">
 			<param name="dir" value="${project.build.workdir}" />
-			<param name="file" value="code.photoswipe${engine}-${project.build.version}.js"/>
-			<param name="output" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}.min.js"/>
+			<param name="file" value="code.photoswipe${engine}-${project.build.version}-${project.quizz.version}.js"/>
+			<param name="output" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}-${project.quizz.version}.min.js"/>
 		</antcall>
 		
 		<antcall target="addLicense">
-			<param name="file" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}.min.js"/>
+			<param name="file" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}-${project.quizz.version}.min.js"/>
 		</antcall>
 		
 	</target>
@@ -165,67 +170,11 @@
 		</copy>
 		
 		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/01-default.html"/>
+			<param name="filePath" value="${project.build.workdir}/examples/01-quizzTest.html"/>
 		</antcall>
 		
 		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/02-jquery.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/03-multiple-image-sets.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/04-jquery-mobile.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/05-jquery-mobile-ajax.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/06-events.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/07-custom-toolbar.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/08-exclusive-mode.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/09-exclusive-mode-no-thumbnails.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/10-image-meta-data.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/11-custom-captions.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/12-custom-target.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/13-custom-target-with-indicators.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/14-tap-image-go-to-url.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/ajax-gallery1.html"/>
-		</antcall>
-		
-		<antcall target="versionStamp">
-			<param name="filePath" value="${project.build.workdir}/examples/ajax-gallery2.html"/>
+			<param name="filePath" value="${project.build.workdir}/examples/02-jqueryQuizzTest.html"/>
 		</antcall>
 		
 	</target>
@@ -247,27 +196,34 @@
 	
 	<target name="moveToArtifact">
 		
-		<copy todir="${project.build.artifactdir}/${project.build.version}">
+		<copy todir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}">
 			<fileset dir="${project.build.workdir}"/>
 			<fileset file="MIT-license.txt"/>
 			<fileset file="README.md"/>
 			<fileset file="${project.src.dir}/change.log"/>
+		</copy>
+		
+		<copy todir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}/style">
 			<fileset file="${project.src.dir}/assets/photoswipe.css"/>
 			<fileset file="${project.src.dir}/assets/icons.png"/>
-			<fileset file="${project.src.dir}/assets/icons@2x.png"/>
+			<fileset file="${project.src.dir}/assets/icons-2x.png"/>
 			<fileset file="${project.src.dir}/assets/loader.gif"/>
 			<fileset file="${project.src.dir}/assets/error.gif"/>
 		</copy>
 		
-		<copy todir="${project.build.artifactdir}/${project.build.version}/noutil">
+		<copy todir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}/noutil">
 			<fileset dir="${project.build.workdir}/noutil"/>
 		</copy>
 		
-		<copy todir="${project.build.artifactdir}/${project.build.version}/lib">
+		<copy todir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}/lib">
 			<fileset dir="${project.build.workdir}/lib"/>
 		</copy>
 		
-		<copy todir="${project.build.artifactdir}/${project.build.version}/examples">
+		<copy todir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}/examples">
+			<fileset dir="${project.build.workdir}/examples"/>
+		</copy>
+		
+		<copy todir="${project.build.artifactdir}/${project.build.version}-${project.quizz.version}/examples">
 			<fileset dir="${project.build.workdir}/examples"/>
 		</copy>
 		
@@ -314,9 +270,11 @@
 	<target name="versionStamp">
 		
 		<replace file="${filePath}" token="%%version%%" value="${project.build.version}"/>
+		<replace file="${filePath}" token="%%quizzversion%%" value="${project.quizz.version}"/>
 		<replace file="${filePath}" token="%%jqueryversion%%" value="${lib.jquery.version}"/>
 		<replace file="${filePath}" token="%%jqmversion%%" value="${lib.jqm.version}"/>
 		<replace file="${filePath}" token="%%year%%" value="${project.build.year}"/>
+		<replace file="${filePath}" token="%%quizzyear%%" value="${project.quizz.year}"/>
 	
 	</target>
 	

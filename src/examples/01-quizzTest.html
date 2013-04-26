@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+	<title>Un test basé sur PhotoSwipe</title>
+	<meta name="author" content="Loizbek" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta charset="utf-8">
+	<link href="styles.css" type="text/css" rel="stylesheet" />
+	
+	<link href="../style/photoswipe.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="../lib/klass.min.js"></script>
+	<script type="text/javascript" src="../code.photoswipe-3.0.5.1-0.0.min.js"></script>
+	
+	<script type="text/javascript">
+
+		(function(window, PhotoSwipe){
+		
+			document.addEventListener('DOMContentLoaded', function(){
+			
+				var
+					options =  {
+				
+						getImageMetaData: function(el){
+							return {
+								relatedUrl: el.getAttribute('data-related-url')
+							}
+						}
+						
+					},
+					instance = PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+				
+				
+				/*instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function(e){
+				
+					if (e.action === 'tap'){
+						var currentImage = instance.getCurrentImage();
+						window.open(currentImage.metaData.relatedUrl);
+					}
+					
+				});*/
+					
+					
+			}, false);
+			
+			
+		}(window, window.Code.PhotoSwipe));
+		
+		(function(window, Util){
+		
+			var data = Util.JSON.loadJSON("data.json");
+			window.alert("synchronous → " + data.test);
+			var data = Util.JSON.loadJSON("data.json",false);
+			window.alert("synchronous explicit → " + data.test);
+			Util.JSON.loadJSON("data.json", true, function(a){window.alert("asynch → " + a.test);});
+		}(window, window.Code.Util));
+		
+		
+	</script>
+	
+</head>
+
+<body>
+<header>
+	<p>Voilà une activité de JANUS</p>
+</header>
+
+<article>
+	<h1>PhotoSwipe</h1>
+	<ul id="Gallery" class="gallery">
+		
+		<li><a href="images/full/001.jpg" data-related-url="images/full/001.jpg"><img src="images/thumb/001.jpg" alt="Image 001" /></a></li>
+		<li><a href="images/full/002.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/002.jpg"><img src="images/thumb/002.jpg" alt="Image 002" /></a></li>
+		<li><a href="images/full/003.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/003.jpg"><img src="images/thumb/003.jpg" alt="Image 003" /></a></li>
+		<li><a href="images/full/004.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/004.jpg"><img src="images/thumb/004.jpg" alt="Image 004" /></a></li>
+		<li><a href="images/full/005.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/005.jpg"><img src="images/thumb/005.jpg" alt="Image 005" /></a></li>
+		<li><a href="images/full/006.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/006.jpg"><img src="images/thumb/006.jpg" alt="Image 006" /></a></li>
+		<li><a href="images/full/007.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/007.jpg"><img src="images/thumb/007.jpg" alt="Image 007" /></a></li>
+		<li><a href="images/full/008.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/008.jpg"><img src="images/thumb/008.jpg" alt="Image 008" /></a></li>
+		<li><a href="images/full/009.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/009.jpg"><img src="images/thumb/009.jpg" alt="Image 009" /></a></li>
+		<li><a href="images/full/010.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/010.jpg"><img src="images/thumb/010.jpg" alt="Image 010" /></a></li>
+		<li><a href="images/full/011.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/011.jpg"><img src="images/thumb/011.jpg" alt="Image 011" /></a></li>
+		<li><a href="images/full/012.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/012.jpg"><img src="images/thumb/012.jpg" alt="Image 012" /></a></li>
+		<li><a href="images/full/013.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/013.jpg"><img src="images/thumb/013.jpg" alt="Image 013" /></a></li>
+		<li><a href="images/full/014.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/014.jpg"><img src="images/thumb/014.jpg" alt="Image 014" /></a></li>
+		<li><a href="images/full/015.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/015.jpg"><img src="images/thumb/015.jpg" alt="Image 015" /></a></li>
+		<li><a href="images/full/016.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/016.jpg"><img src="images/thumb/016.jpg" alt="Image 016" /></a></li>
+		<li><a href="images/full/017.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/017.jpg"><img src="images/thumb/017.jpg" alt="Image 017" /></a></li>
+		<li><a href="images/full/018.jpg" data-related-url="http://www.photoswipe.com/latest/examples/images/full/018.jpg"><img src="images/thumb/018.jpg" alt="Image 018" /></a></li>
+		
+	</ul>
+	
+</article>	
+
+	
+<footer>
+	<p>Qui devrait fonctionner aussi sur dispositif portabeul…</p>
+<footer>
+
+</body>
+</html>

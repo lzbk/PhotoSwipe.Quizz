@@ -620,7 +620,12 @@
 		
 		},
 		
-		
+		/*
+		 * Function: choose
+		 */
+		choose: function(){
+			window.alert('choisi !');
+		},
 		
 		/*
 		 * Function: previous
@@ -1140,6 +1145,10 @@
 				
 				case Toolbar.ToolbarAction.play:
 					this.play();
+					break;
+					
+				case Toolbar.ToolbarAction.choose:
+					this.choose();
 					break;
 					
 			}
