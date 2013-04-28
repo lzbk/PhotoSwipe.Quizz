@@ -5,8 +5,8 @@
 (function(window, klass, Util){
 	
 	
-	Util.registerNamespace('Code.Quizz');
-	var Quizz = window.Code.Quizz;
+	Util.registerNamespace('Code.PhotoSwipe.Quizz');
+	var Quizz = window.Code.PhotoSwipe.Quizz;
 	
 	
 	Quizz.Feedback = klass({

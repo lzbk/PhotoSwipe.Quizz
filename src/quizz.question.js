@@ -4,8 +4,8 @@
 
 (function(window, klass, Util, Answer, Feedback){
 	
-	
-	var Quizz = window.Code.Quizz;
+	Util.registerNamespace('Code.PhotoSwipe.Quizz');
+	var Quizz = window.Code.PhotoSwipe.Quizz;
 	
 	Quizz.Question = klass({
 		
@@ -13,7 +13,7 @@
 		id:null,
 		text: null,
 		title: null,
-		mode: null,// Quizz.CONSTANTS.ONE_TRUE,
+		mode: Quizz.CONSTANTS.Question.ONE_TRUE,
 		answers: {},
 		yesAnswers: [],
 		selection: [],
@@ -26,7 +26,9 @@
 			this.id = jason.id;
 			this.text = jason.text;
 			this.title = jason.title;
-			this.mode = jason.mode;
+			if(typeof Quizz.CONSTANTS.Question.test(jason.mode) !== "undefined"){
+				this.mode = Quizz.CONSTANTS.Question.test(jason.mode);
+			}
 			this.scoreFormula = this.checkFormula(jason.scoreFormula);
 			var l = jason.answers.length, i;
 			for(i=0; i < l; i++){
@@ -98,6 +100,6 @@
 	window, 
 	window.klass, 
 	window.Code.Util,
-	window.Code.Quizz.Answer,
-	window.Code.Quizz.Feedback
+	window.Code.PhotoSwipe.Quizz.Answer,
+	window.Code.PhotoSwipe.Quizz.Feedback
 ));
