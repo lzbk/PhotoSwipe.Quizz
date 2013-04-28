@@ -1,1 +1,22 @@
-{"test":"youpi"}
+{"id": "TestQuizz1",
+ "title": "A Sample Test",
+ "text": "What image is the nicest? (don't think that tastes cannot be discussed, MY favourite is THE nicest)",
+ "answers": [
+         {"id": "rep1",
+          "src": "images/full/001.jpg",
+          "thumb": "images/thumb/001.jpg",
+          "status": false,
+          "comment": "the image #1",
+          "feedback": "I don'tknow yet",
+          "weighting": 1},
+         {"id": "rep2",
+          "src": "images/full/002.jpg",
+          "thumb": "images/thumb/002.jpg",
+          "status": false,
+          "comment": "the image #2",
+          "feedback": "I don'tknow yet",
+          "weighting": 1}],
+ "mode": "0",
+ "scoreFormula": "",
+ "feedback": [{"condition": "true", "text":"test"}]
+}
