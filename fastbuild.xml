@@ -101,7 +101,7 @@
 			<param name="filePath" value="${project.build.workdir}/code.photoswipe.quizz${engine}-${project.quizz.version}.js"/>
 		</antcall>
 		
-		<antcall target="minimizeJS">
+		<!--antcall target="minimizeJS">
 			<param name="dir" value="${project.build.workdir}" />
 			<param name="file" value="code.photoswipe${engine}-${project.build.version}.js"/>
 			<param name="output" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}.min.js"/>
@@ -110,7 +110,7 @@
 			<param name="dir" value="${project.build.workdir}" />
 			<param name="file" value="code.photoswipe.quizz${engine}-${project.quizz.version}.js"/>
 			<param name="output" value="${project.build.workdir}/code.photoswipe.quizz${engine}-${project.quizz.version}.min.js"/>
-		</antcall>
+		</antcall-->
 		
 		<antcall target="addLicense">
 			<param name="file" value="${project.build.workdir}/code.photoswipe${engine}-${project.build.version}.js"/>	

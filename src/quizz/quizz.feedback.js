@@ -19,8 +19,8 @@
 				this.text = text;
 				this.condition = condition;
 			}
-			else{//TODO proper error handling would be nice
-				window.alert(condition + " is not valid");
+			else{
+				throw("quizz.feedback("+condition + ") is not valid.");
 			}
 		},
 		

@@ -17,12 +17,12 @@
 		answers: {},
 		yesAnswers: [],
 		selection: [],
-		traces: null,
+		traces: false,
 		globalFeedback: [],
 		scoreFormula: null,
 		
-		//methods jason = parsed JSON
-		initialize: function(jason){
+		//methods jason = parsed JSON // traceActivity : a Boolean
+		initialize: function(jason, traceActivity){
 			this.id = jason.id;
 			this.text = jason.text;
 			this.title = jason.title;
@@ -41,6 +41,10 @@
 			for(i=0; i < l; i++){
 				this.globalFeedback.push(new Feedback(jason.feedback[i].text, jason.feedback[i].condition));
 			}
+			if( (typeof traceActivity === "boolean") && (traceActivity === true) ){
+				this.traces = new Quizz.Traces();
+			}
+				
 		},
 		
 		verify : function(){
@@ -76,7 +80,7 @@
 				"\n<ul id='"+this.id+"' class='gallery'>",
 				theParent = Util.DOM.find(selector, contextEl);
 			if(theParent.length !== 1){
-				window.alert("bad selector"+(selector)+", bad : "+theParent.length+" elements");
+				throw("quizz.question.loadIn : bad selector ("+(selector)+"), bad : "+theParent.length+" elements");
 			}
 			else{
 				theParent = theParent[0];
@@ -98,6 +102,26 @@
 		//returns a list of the images in the questionnaire
 		images: function(){
 			return window.document.querySelectorAll('#'+this.id+' a');
+		},
+		
+		//adds a trace
+		addTrace: function(id, ts, act){
+			if(this.traces !== false){
+				this.traces.addTrace(id, ts, act);
+			}
+		},
+		
+		//process an answer
+		answer: function(id){
+			var retval;
+			this.selection.push(id);
+			if(this.answers[id].getStatus() === true){
+				retval = "Well done";
+			}
+			else{
+				retval = "This answer was not expected";
+			}
+			window.alert(retval+ "\n" + this.answers[id].getFeedback());
 		}
 		
 	});

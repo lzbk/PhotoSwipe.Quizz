@@ -9,8 +9,9 @@
 	
 	Quizz.QuizzClass = window.Code.PhotoSwipe.PhotoSwipeClass.extend(function(){
 	}).methods({
-		initialize: function(images, options, id){
-					this.supr(images, options, id);
+		initialize: function(question, options, id){
+					this.question = question;
+					this.supr(question.images(), options, id);
 					this.settings.getToolbar = Toolbar.getToolbar;
 		},
 		
@@ -30,14 +31,16 @@
 		 * Function: choose
 		 */
 		choose: function(){
-			window.alert('choisi !');
+			this.question.answer(this.getCurrentImageId());
 		},
 		
 		/*
-		 * overload: onToolbarTap
+		 * overload, for choose…
 		 */
 		onToolbarTap: function(e){
-		
+
+			this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'click '+e.action);
+
 			switch(e.action){
 				
 				case PhotoSwipe.Toolbar.ToolbarAction.next:
@@ -69,6 +72,55 @@
 				tapTarget: e.tapTarget
 			});
 			
+		},
+		
+		/*
+		 * overload for traces…
+		 */
+		onKeyDown: function(e){
+			
+			if (e.keyCode === 37) { // Left
+				e.preventDefault();
+				this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'key previous');
+				this.previous();
+			}
+			else if (e.keyCode === 39) { // Right
+				e.preventDefault();
+				this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'key next');
+				this.next();
+			}
+			else if (e.keyCode === 38 || e.keyCode === 40) { // Up and down
+				e.preventDefault();
+			}
+			else if (e.keyCode === 27) { // Escape
+				e.preventDefault();
+				this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'key close');
+				this.hide();
+			}
+			else if (e.keyCode === 13) { // Enter
+				e.preventDefault();
+				this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'key choose');
+				this.choose();
+			}
+			else if (e.keyCode === 32) { // SpaceBar
+				e.preventDefault();
+				if(this.carousel.isSlideshowActive){
+					this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'key stop');
+					this.stop();
+				}
+				else{
+					this.question.addTrace(this.getCurrentImageId(), new Date().valueOf(), 'key play');
+					this.play();
+				}
+			}
+			
+		},
+		
+		/*
+		 * to know the id of the current image…
+		 */
+		getCurrentImageId: function(){
+			return this.getCurrentImage().metaData.id;
 		}
 	});
 }

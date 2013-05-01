@@ -14,29 +14,39 @@
 	<script type="text/javascript" src="../lib/klass.min.js"></script>
 	<script type="text/javascript" src="../code.photoswipe-%%version%%.js"></script>
 	<script type="text/javascript" src="../code.photoswipe.quizz-%%quizzversion%%.js"></script>
-
+	<style>#debug{
+			width: 5em;
+			height: 2em;
+			background-color:red;
+			cursor:pointer;
+			position: absolute;
+			right:0;
+			top:0;
+		}
+		#debugMessages{
+			width: 38em;
+			height: 11em;
+			background-color:green;
+			position: absolute;
+			right:0;
+			bottom:0;
+			overflow-y: scroll;
+			color:white;
+		}
+	</style>
 	
 	<script type="text/javascript">
 
 		(function(window, Util, PhotoSwipe, Quizz){
 			document.addEventListener('DOMContentLoaded', function(){
-				var questionnaire = new Quizz.Question(Util.JSON.loadJSON("data.json"));
+				var questionnaire = new Quizz.Question(Util.JSON.loadJSON("data.json"), true);
 				questionnaire.loadIn("#test");
 				var instance = Quizz.attach(questionnaire, {});
+				Util.Events.add(Util.DOM.find("#debug")[0],"click", function(){Util.DOM.appendChild(Util.DOM.createElement("section", [], JSON.stringify(questionnaire.traces)+"<br /><em>Selection</em> → "+JSON.stringify(questionnaire.selection)+"<br/><em>yes</em>→"+JSON.stringify(questionnaire.yesAnswers)),Util.DOM.find("#debugMessages")[0]);});
 			}, false);
 			
 			
-		}(window, window.Code.Util, window.Code.PhotoSwipe, window.Code.PhotoSwipe.Quizz));
-		
-		/*(function(window, Util, PhotoSwipe){
-		
-			var data = new PhotoSwipe.Quizz(Util.JSON.loadJSON("data.json"));
-			window.alert("synchronous → " + data.verify());
-			var data = Util.JSON.loadJSON("data.json",false);
-			window.alert("synchronous explicit → " + data.test);
-			Util.JSON.loadJSON("data.json", true, function(a){window.alert("asynch → " + a.test);});
-		}(window, window.Code.Util, window.Code.PhotoSwipe));*/
-		
+		}(window, window.Code.Util, window.Code.PhotoSwipe, window.Code.PhotoSwipe.Quizz));		
 		
 	</script>
 	
@@ -45,9 +55,11 @@
 <body>
 <header>
 	<p>Voilà une activité de JANUS</p>
+	<div id="debug"></div>
 </header>
 
 <article id="test"></article>
+<article id="debugMessages"></article>
 	
 <footer>
 	<p>Qui devrait fonctionner aussi sur dispositif portabeul…</p>

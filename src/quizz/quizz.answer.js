@@ -33,8 +33,8 @@
 			return '<li><a href="'+this.src+'" id="'+this.id+'"><img src="'+this.thumb+'" alt="'+this.comment+'" /></a></li>';
 		},
 		
-		displayFeedback: function(){
-			window.alert(this.feedback);//TODO
+		getFeedback: function(){
+			return this.feedback;
 		},
 		
 		getWeight: function(){
@@ -46,7 +46,7 @@
 		},
 		
 		getStatus: function(){
-			return this.getStatus;
+			return this.status;
 		}
 	});
 

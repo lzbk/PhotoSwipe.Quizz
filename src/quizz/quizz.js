@@ -8,7 +8,10 @@
 	Util.registerNamespace('Code.PhotoSwipe');
 	var PhotoSwipe = window.Code.PhotoSwipe, Quizz = window.Code.PhotoSwipe.Quizz;
 	
-	//PhotoSwipe.CssClasses = PhotoSwipe.CssClasses;
+	//Overload of the function. Would be nicer not to edit it, but not used in PhotoSwipe, so who cares?
+	window.Code.PhotoSwipe.Cache.Functions.getImageMetaData = function(el){
+		return  {id:Util.DOM.getAttribute(el, "id")};
+	}
 	
 	/*
 	 * Function: Code.PhotoSwipe.attach
@@ -68,7 +71,7 @@
 		instance = PhotoSwipe.getInstance(id);
 		
 		if (Util.isNothing(instance)){
-			instance = new Quizz.QuizzClass(question.images(), options, id);
+			instance = new Quizz.QuizzClass(question, options, id);
 			PhotoSwipe.instances.push(instance);
 		}
 		else{
@@ -78,22 +81,7 @@
 		return instance;
 	
 	};
-	
-/*	Quizz.Toolbar.getToolbar = function(){
 		
-		return '<div class="' + PhotoSwipe.Toolbar.CssClasses.close + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.play + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.choose + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.previous + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div><div class="' + PhotoSwipe.Toolbar.CssClasses.next + '"><div class="' + PhotoSwipe.Toolbar.CssClasses.toolbarContent + '"></div></div>';
-		
-	};
-	
-	Quizz.Toolbar.ToolbarAction = {
-		close: 'close',
-		play: 'play',
-		next: 'next',
-		previous: 'previous',
-		choose: 'choose',
-		none: 'none'
-	};*/
-	
 }
 (
 	window, 

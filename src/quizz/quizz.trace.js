@@ -21,12 +21,14 @@
 	});	
 	
 	Quizz.Traces = klass({
-		traces:   [],
+		traces: null,
 		
 		initialize: function(){
+			this.traces = [];
 		},
 		
 		addTrace: function(id, ts, act){
+			//window.alert('('+id+', '+ts+', '+act+')');/**/
 			this.traces.push(new Quizz.Trace(id,ts,act));
 		}
 	});
