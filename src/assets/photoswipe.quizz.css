@@ -1,0 +1,28 @@
+/*
+ * photoswipe.css
+ * Copyright (c) %%year%% by Code Computerlove (http://www.codecomputerlove.com)
+ * Licensed under the MIT license
+ * 
+ * Edited %%quizzyear%% by Lzbk
+ *
+ * Default styles for PhotoSwipe
+ * Avoid any position or dimension based styles
+ * where possible, unless specified already here.
+ * The gallery automatically works out gallery item
+ * positions etc.
+ */
+
+div.ps-toolbar-choose
+{
+	cursor: pointer;
+	display: table-cell;
+}
+
+div.ps-toolbar-choose div.ps-toolbar-content
+{
+	background-position: -176px 0;
+}
+div.ps-toolbar-choose-disabled div.ps-toolbar-content
+{
+	background-position: -176px -44px;
+}

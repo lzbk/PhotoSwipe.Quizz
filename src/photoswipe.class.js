@@ -118,7 +118,6 @@
 		 * Function: initialize
 		 */
 		initialize: function(images, options, id){
-			
 			var targetPosition;
 			
 			if (Util.isNothing(id)){
@@ -304,7 +303,6 @@
 		 * Function: createComponents
 		 */
 		createComponents: function(){
-		
 			this.documentOverlay = new DocumentOverlay.DocumentOverlayClass(this.settings);
 			this.carousel = new Carousel.CarouselClass(this.cache, this.settings);
 			this.uiLayer = new UILayer.UILayerClass(this.settings);
@@ -621,13 +619,6 @@
 		},
 		
 		/*
-		 * Function: choose
-		 */
-		choose: function(){
-			window.alert('choisi !');
-		},
-		
-		/*
 		 * Function: previous
 		 */
 		previous: function(){
@@ -648,7 +639,6 @@
 		 * Function: next
 		 */
 		next: function(){
-			
 			if (this.isZoomActive()){
 				return;
 			}
@@ -1145,10 +1135,6 @@
 				
 				case Toolbar.ToolbarAction.play:
 					this.play();
-					break;
-					
-				case Toolbar.ToolbarAction.choose:
-					this.choose();
 					break;
 					
 			}

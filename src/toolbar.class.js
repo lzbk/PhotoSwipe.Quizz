@@ -64,7 +64,6 @@
 		 * Function: initialize
 		 */
 		initialize: function(cache, options){
-			
 			var cssClass;
 			
 			this.settings = options;
@@ -117,9 +116,6 @@
 			if (this.settings.preventSlideshow && !Util.isNothing(this.playEl)){
 				Util.DOM.hide(this.playEl);
 			}
-			
-			this.chooseEl = Util.DOM.find('.' + PhotoSwipe.Toolbar.CssClasses.choose, this.toolbarEl)[0];
-			
 			this.nextEl = Util.DOM.find('.' + PhotoSwipe.Toolbar.CssClasses.next, this.toolbarEl)[0];
 			this.previousEl = Util.DOM.find('.' + PhotoSwipe.Toolbar.CssClasses.previous, this.toolbarEl)[0];
 			

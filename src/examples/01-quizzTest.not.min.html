@@ -9,19 +9,20 @@
 	<link href="styles.css" type="text/css" rel="stylesheet" />
 	
 	<link href="../style/photoswipe.css" type="text/css" rel="stylesheet" />
+	<link href="../style/photoswipe.quizz.css" type="text/css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="../lib/klass.min.js"></script>
-	<script type="text/javascript" src="../code.photoswipe-3.0.5.1-0.0.js"></script>
+	<script type="text/javascript" src="../code.photoswipe-%%version%%.js"></script>
+	<script type="text/javascript" src="../code.photoswipe.quizz-%%quizzversion%%.js"></script>
+
 	
 	<script type="text/javascript">
 
 		(function(window, Util, PhotoSwipe, Quizz){
-		
 			document.addEventListener('DOMContentLoaded', function(){
 				var questionnaire = new Quizz.Question(Util.JSON.loadJSON("data.json"));
 				questionnaire.loadIn("#test");
-				window.alert("mode: "+questionnaire.mode);/**/
-				var options = {}, instance = PhotoSwipe.attach( window.document.querySelectorAll('#'+questionnaire.id+' a'), options );				
+				var instance = Quizz.attach(questionnaire, {});
 			}, false);
 			
 			

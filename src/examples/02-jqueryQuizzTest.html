@@ -9,35 +9,29 @@
 	<link href="styles.css" type="text/css" rel="stylesheet" />
 	
 	<link href="../style/photoswipe.css" type="text/css" rel="stylesheet" />
+	<link href="../style/photoswipe.quizz.css" type="text/css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="../lib/klass.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	
-	<script type="text/javascript" src="../code.photoswipe.jquery-3.0.5.1-0.0.min.js"></script>
+	<script type="text/javascript" src="../code.photoswipe-%%version%%.min.js"></script>
+	<script type="text/javascript" src="../code.photoswipe.quizz-%%quizzversion%%.min.js"></script>
 	
 	
 	<script type="text/javascript">
-
-		(function(window, $, PhotoSwipe){
-			
-			$(document).ready(function(){
-				
+		
+		
+		(function(window, $, Util, PhotoSwipe, Quizz){
+			document.addEventListener('DOMContentLoaded', function(){
+				var questionnaire = new Quizz.Question(Util.JSON.loadJSON("data.json"));
+				questionnaire.loadIn("#test");
+				var instance = Quizz.attach(questionnaire, {});
 				var options = {};
 				$("#Gallery a").photoSwipe(options);
+			}, false);
 			
-			});
 			
-			
-		}(window, window.jQuery, window.Code.PhotoSwipe));
-		
-		(function(window, $, Util){
-		
-			var data = Util.JSON.loadJSON("data.json");
-			window.alert("synchronous → " + data.test);
-			var data = Util.JSON.loadJSON("data.json",false);
-			window.alert("synchronous explicit → " + data.test);
-			Util.JSON.loadJSON("data.json", true, function(a){window.alert("asynch → " + a.test);});
-		}(window, window.jQuery, window.Code.Util));
+		}(window, window.jQuery, window.Code.Util, window.Code.PhotoSwipe, window.Code.PhotoSwipe.Quizz));
 		
 	</script>
 	
@@ -78,6 +72,8 @@
 	</ul>
 	
 </div>	
+
+<article id="test"></article>
 
 	
 <div id="Footer">

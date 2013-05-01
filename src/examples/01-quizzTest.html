@@ -9,24 +9,23 @@
 	<link href="styles.css" type="text/css" rel="stylesheet" />
 	
 	<link href="../style/photoswipe.css" type="text/css" rel="stylesheet" />
+	<link href="../style/photoswipe.quizz.css" type="text/css" rel="stylesheet" />
 	
 	<script type="text/javascript" src="../lib/klass.min.js"></script>
-	<script type="text/javascript" src="../code.photoswipe-3.0.5.1-0.0.min.js"></script>
+	<script type="text/javascript" src="../code.photoswipe-%%version%%.min.js"></script>
+	<script type="text/javascript" src="../code.photoswipe.quizz-%%quizzversion%%.min.js"></script>
 	
 	<script type="text/javascript">
 
 		(function(window, Util, PhotoSwipe, Quizz){
-		
 			document.addEventListener('DOMContentLoaded', function(){
 				var questionnaire = new Quizz.Question(Util.JSON.loadJSON("data.json"));
 				questionnaire.loadIn("#test");
-				window.alert("mode: "+questionnaire.mode);/**/
-				var options = {}, instance = PhotoSwipe.attach( window.document.querySelectorAll('#'+questionnaire.id+' a'), options );				
+				var instance = Quizz.attach(questionnaire, {});
 			}, false);
 			
 			
-		}(window, window.Code.Util, window.Code.PhotoSwipe, window.Code.PhotoSwipe.Quizz));
-		
+		}(window, window.Code.Util, window.Code.PhotoSwipe, window.Code.PhotoSwipe.Quizz));	
 		/*(function(window, Util, PhotoSwipe){
 		
 			var data = new PhotoSwipe.Quizz(Util.JSON.loadJSON("data.json"));

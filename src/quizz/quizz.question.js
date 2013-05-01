@@ -76,7 +76,7 @@
 				"\n<ul id='"+this.id+"' class='gallery'>",
 				theParent = Util.DOM.find(selector, contextEl);
 			if(theParent.length !== 1){
-				window.alert("bad selector, bad : "+theParent.length+" elements");
+				window.alert("bad selector"+(selector)+", bad : "+theParent.length+" elements");
 			}
 			else{
 				theParent = theParent[0];
@@ -88,6 +88,16 @@
 				
 				Util.DOM.appendChild(theQuestion, theParent);
 			}
+		},
+		
+		//calls the photoswipe attach method
+		init: function(){
+			return window.Code.PhotoSwipe.attach( this.images(), {} );
+		},
+
+		//returns a list of the images in the questionnaire
+		images: function(){
+			return window.document.querySelectorAll('#'+this.id+' a');
 		}
 		
 	});

@@ -164,15 +164,6 @@ div.ps-toolbar-play-disabled div.ps-toolbar-content
 	background-position: -88px -44px;
 }
 
-div.ps-toolbar-choose div.ps-toolbar-content
-{
-	background-position: -176px 0;
-}
-div.ps-toolbar-choose-disabled div.ps-toolbar-content
-{
-	background-position: -176px -44px;
-}
-
 /* Hi-res display */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (-moz-min-device-pixel-ratio: 1.5),
