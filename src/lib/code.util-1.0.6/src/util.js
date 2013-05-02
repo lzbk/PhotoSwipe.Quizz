@@ -267,8 +267,51 @@
 				return ('undefined' !== typeof obj[propName]);
 			}
 			
-		}
+		},
 		
+		/*
+		 * Function: array intersect
+		 */
+		
+		arrayIntersect: function(a1, a2){
+			var retval = [], l=a1.length;
+			for(var i=0; i<l; i++){
+				if((a2.indexOf(a1[i])>-1) && (retval.indexOf(a1[i])==-1)){
+					retval.push(a1[i]);
+				}
+			}
+			return retval;
+		},
+		
+		arrayUnion: function(a1, a2){
+			var retval = [], tmp={}, l1=a1.length, l2=a2.length;
+			for (var i=0; i<l1; i++){
+				if(typeof tmp[a1[i]] === "undefined"){
+					retval.push(a1[i]);
+					tmp[a1[i]]=true;
+				}
+			}
+			for (i=0; i<l2; i++){
+				if(typeof tmp[a2[i]] === "undefined"){
+					retval.push(a2[i]);
+					tmp[a2[i]]=true;
+				}
+			}
+			return retval;
+		},
+		
+		/*
+		 * diff(a1, a2): what is in a1 that is not in a2
+		 */
+		arrayDiff: function(a1,a2){
+			var retval=[], l=a1.length;
+			for(var i=0;i<l;i++){
+				if((a2.indexOf(a1[i])==-1) && (retval.indexOf(a1[i])==-1)){
+					retval.push(a1[i]);
+				}
+			}
+			return retval;
+		}
 		
 	};
 	
