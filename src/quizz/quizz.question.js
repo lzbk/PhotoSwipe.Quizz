@@ -47,10 +47,6 @@
 				
 		},
 		
-		verify : function(){
-			return this.questions[1].test;
-		},
-		
 		//optional : the id sought
 		selected: function(id){
 			if(typeof id === "undefined"){
@@ -122,8 +118,45 @@
 				retval = "This answer was not expected";
 			}
 			window.alert(retval+ "\n" + this.answers[id].getFeedback());
-		}
+			if(this.isOver()){
+				window.alert(this.createGlobalFeedback());
+			}
+		},
 		
+		//is the activity over based on the mode…
+		isOver: function(){
+			var retval = false;
+			switch(this.mode){
+				case Quizz.CONSTANTS.Question.ALL_TRUE:
+					retval = (Util.arrayDiff(this.getTrue(), Util.arrayIntersect(this.selected(), this.getTrue())).length===0);
+					break;
+				case Quizz.CONSTANTS.Question.ONE_TRUE:
+					retval = (Util.arrayIntersect(this.selected(), this.getTrue()).length > 0);
+					break;
+				case Quizz.CONSTANTS.Question.ONE_FALSE:
+					retval = (Util.arrayDiff(this.selected(), this.getTrue()).length > 0);
+					break;
+				case Quizz.CONSTANTS.Question.JUST_ONE:
+					retval = (this.selected().length == 1);
+					break;
+				case Quizz.CONSTANTS.Question.ONLY_TRUE:
+					retval = ( (Util.arrayDiff(this.getTrue(), this.selected()).length === 0) &&
+							   (Util.arrayDiff(this.selected(), this.getTrue()).length === 0) );
+					break;
+			}
+			return retval;
+		},
+		
+		//for each feedback checks the condition and concatenates it in order of appearance if true
+		createGlobalFeedback: function(){
+			var retval="", l=this.globalFeedback.length;
+			for(var i=0;i<l;i++){
+				if(this.globalFeedback[i].testCondition(this.selected())){
+					retval += "\n"+this.globalFeedback[i].getText();
+				}
+			}
+			return retval;
+		}
 	});
 	
 		

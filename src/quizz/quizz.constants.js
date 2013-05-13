@@ -14,10 +14,11 @@
 					}
 				},
 		Question: {ALL_TRUE:0,
-				ONE_TRUE:   1,
-				ONE_FALSE:  2,
-				JUST_ONE:   3,
-				ALL_AT_ONCE:4, //TODO
+				ONLY_TRUE:  1,
+				ONE_TRUE:   2,
+				ONE_FALSE:  3,
+				JUST_ONE:   4,
+				ALL_AT_ONCE:5, //TODO
 				test: function(constant){
 						return Quizz.CONSTANTS.Question[constant];
 					}

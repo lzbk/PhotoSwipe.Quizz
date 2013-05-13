@@ -38,7 +38,7 @@
 		},
 		
 		getText: function(){
-			return this.text;
+			return this.text;//TODO
 		}
 		
 	});
