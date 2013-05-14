@@ -15,6 +15,12 @@
 					this.settings.getToolbar = Toolbar.getToolbar;
 		},
 		
+		dispose: function(){			
+			if(typeof this.question !== "undefined"){
+				this.question.dispose();
+			}
+			this.supr();
+		},
 		/*
 		 * Function: createComponents
 		 */

@@ -58,7 +58,7 @@
           "comment": "the image #8",
           "feedback": "I don't know yet",
           "weighting": 1}],
- "mode": "JUST_ONE",
+ "mode": "ALL_TRUE",
  "scoreFormula": "",
- "feedback": [{"condition": "true", "text":"test"}]
+ "feedback": [{"condition": "true", "text":"You should go <a href='..'>there</a>."}]
 }

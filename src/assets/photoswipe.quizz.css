@@ -26,3 +26,62 @@ div.ps-toolbar-choose-disabled div.ps-toolbar-content
 {
 	background-position: -176px -44px;
 }
+
+div.quizz-overlay-ok, div.quizz-overlay-close, div.quizz-overlay-final{
+	background-color: rgba(0,0,0,.5);
+	margin: 0;
+	padding:0;
+}
+
+.quizz-overlay-content{
+	background-color: rgba(255,255,255,.75);
+	width:33%;
+	margin-left:auto;
+	margin-right:auto;
+	padding:1em;
+	padding-bottom:3px;
+	margin-top: 1em;
+	max-width:550px;
+	position:relative;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.quizz-overlay-final .quizz-overlay-content{
+	padding-bottom: 1em;
+}
+
+.quizz-overlay-content div{
+	padding:0;
+	margin:0;
+}
+
+.quizz-overlay-content a{
+	display: inline;
+}
+
+.quizz-overlay-close #quizz-overlay-button{
+	position: absolute;
+	top:5px;
+	right: 5px;
+	width: 19px;
+	height: 19px;
+	background-image: url(icons.png);
+	background-position: -13px -13px;
+	cursor: pointer;
+}
+
+.quizz-overlay-ok #quizz-overlay-button{
+	display: block;
+	width: 91px;
+	height: 28px;
+	background-image: url(OK.png);
+	margin-left:auto;
+	margin-right:auto;
+	cursor: pointer;
+}
+
+.quizz-overlay-final #quizz-overlay-button{
+	display:none;
+}

@@ -22,6 +22,12 @@
 				test: function(constant){
 						return Quizz.CONSTANTS.Question[constant];
 					}
+				},
+		Dialog: {OK: "quizz-overlay-ok",
+				 CLOSE: "quizz-overlay-close",
+				 FINAL: "quizz-overlay-final",
+				 BUTTONID: "quizz-overlay-button",
+				 TEXTCLASS: "quizz-overlay-content"
 				}
 	};
 }

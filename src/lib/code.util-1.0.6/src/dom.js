@@ -448,6 +448,23 @@
 			
 			
 			
+			showOffspring: function(el){
+				if (typeof el !== "undefined"){
+					if(Util.isLikeArray(el)){
+						var i, len;
+						for (i=0, len=el.length; i<len; i++){
+							Util.DOM.showOffspring(el[i]);
+						}
+					}
+					else{
+						if(typeof el.childNodes !== undefined){
+							Util.DOM.showOffspring(el.childNodes);
+						}
+						Util.DOM._show(el);
+					}
+				}
+			},
+			
 			/*
 			 * Function: show
 			 */
@@ -709,6 +726,10 @@
 			
 				return window.pageYOffset;
 			
+			},
+			
+			content: function(el, content){
+				el.innerHTML = content;
 			}
 			
 		}

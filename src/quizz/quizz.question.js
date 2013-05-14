@@ -11,6 +11,8 @@
 		
 		//attributes
 		id:null,
+		el: null,
+		overlay: null,
 		text: null,
 		title: null,
 		mode: Quizz.CONSTANTS.Question.ONE_TRUE,
@@ -20,6 +22,12 @@
 		traces: false,
 		globalFeedback: [],
 		scoreFormula: null,
+		
+		dispose: function(){
+			if(typeof this.overlay !== "undefined"){
+				this.overlay.dispose();
+			}
+		},
 		
 		//methods jason = parsed JSON // traceActivity : a Boolean
 		initialize: function(jason, traceActivity){
@@ -44,7 +52,7 @@
 			if( (typeof traceActivity === "boolean") && (traceActivity === true) ){
 				this.traces = new Quizz.Traces();
 			}
-				
+			this.overlay = new Quizz.DialogOverlay();
 		},
 		
 		//optional : the id sought
@@ -71,7 +79,7 @@
 		
 		//parameters : see Util.DOM.find function…
 		loadIn: function(selector, contextEl){
-			var theQuestion, anAnswer, content = "<h1>"+this.title+"</h1>" +
+			var anAnswer, content = "<h1>"+this.title+"</h1>" +
 				"\n<p>"+this.text+"</p>" +
 				"\n<ul id='"+this.id+"' class='gallery'>",
 				theParent = Util.DOM.find(selector, contextEl);
@@ -84,9 +92,9 @@
 					content += "\n"+this.answers[anAnswer].toString();
 				}
 				content += "\n</ul>";
-				theQuestion = Util.DOM.createElement('div', null, content);
+				this.el = Util.DOM.createElement('div', null, content);
 				
-				Util.DOM.appendChild(theQuestion, theParent);
+				Util.DOM.appendChild(this.el, theParent);
 			}
 		},
 		
@@ -109,7 +117,7 @@
 		
 		//process an answer
 		answer: function(id){
-			var retval;
+			var retval, self=this;
 			this.selection.push(id);
 			if(this.answers[id].getStatus() === true){
 				retval = "Well done";
@@ -117,9 +125,12 @@
 			else{
 				retval = "This answer was not expected";
 			}
-			window.alert(retval+ "\n" + this.answers[id].getFeedback());
 			if(this.isOver()){
-				window.alert(this.createGlobalFeedback());
+				this.overlay.show(Quizz.CONSTANTS.Dialog.OK, "<p>" + retval+ "<br/>" + this.answers[id].getFeedback() + "</p>",
+					function(){self.overlay.show(Quizz.CONSTANTS.Dialog.FINAL, self.createGlobalFeedback());});
+			}
+			else{
+				this.overlay.show(Quizz.CONSTANTS.Dialog.OK, "<p>" + retval+ "<br/>" + this.answers[id].getFeedback() + "</p>");
 			}
 		},
 		
