@@ -28,8 +28,11 @@
 		},
 		
 		addTrace: function(id, ts, act){
-			//window.alert('('+id+', '+ts+', '+act+')');/**/
 			this.traces.push(new Quizz.Trace(id,ts,act));
+		},
+		
+		fill: function(jsonedTraces){
+			this.traces = jsonedTraces.traces;
 		}
 	});
 

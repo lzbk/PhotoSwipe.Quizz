@@ -1,6 +1,8 @@
 {"id": "TestQuizz1",
- "title": "A Sample Test",
+ "title":"A Sample Test",
  "text": "What image is the nicest? (don't think that tastes cannot be discussed, MY favourite is THE nicest)",
+ "language": "English",
+ "repeatable": false,
  "answers": [
          {"id": "rep1",
           "src": "images/full/001.jpg",
@@ -60,5 +62,6 @@
           "weighting": 1}],
  "mode": "ALL_TRUE",
  "scoreFormula": "",
- "feedback": [{"condition": "true", "text":"You should go <a href='..'>there</a>."}]
+ "feedback": [{"condition": true, "text":"You should go <a href='..'>there</a>."}],
+ "recap": [{"condition": true, "text":"You come from <a href='examples'>here</a>."}]
 }

@@ -82,15 +82,8 @@
 				Util.Events.add(this.close, "click", onOK);
 			}
 			Util.DOM.setStyle(this.el, 'opacity', 0);
-			//Util.DOM.setStyle(this.close, 'opacity', 0);
-			//Util.DOM.setStyle(this.content, 'opacity', 0);
 			Util.DOM.showOffspring(this.el);
-			/*Util.DOM.show(this.close);
-			Util.DOM.show(this.content);*/
-			Util.Animation.fadeIn(this.el, 250);
-			//Util.Animation.fadeIn(this.content, 333);
-			//Util.Animation.fadeIn(this.close, 500);
-			
+			Util.Animation.fadeIn(this.el, 250);			
 		},
 		
 		hide: function(){

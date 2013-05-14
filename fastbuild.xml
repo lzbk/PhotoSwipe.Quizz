@@ -88,6 +88,7 @@
 			<fileset dir="." includes="${project.src.dir}/quizz/quizz.feedback.js" />
 			<fileset dir="." includes="${project.src.dir}/quizz/quizz.trace.js" />
 			<fileset dir="." includes="${project.src.dir}/quizz/quizz.dialogoverlay.js" />
+			<fileset dir="." includes="${project.src.dir}/quizz/quizz.storage.js" />
 			<fileset dir="." includes="${project.src.dir}/quizz/quizz.question.js" />
 			<fileset dir="." includes="${project.src.dir}/quizz/quizz.toolbar.js" />
 			<fileset dir="." includes="${project.src.dir}/quizz/quizz.toolbar.class.js" />
