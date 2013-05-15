@@ -146,6 +146,10 @@
 			<param name="filePath" value="${project.build.workdir}/examples/03-notQuizz.not.min.html"/>
 		</antcall>
 		
+		<antcall target="versionStamp">
+			<param name="filePath" value="${project.build.workdir}/examples/02-quizzTest.not.min.weighted.html"/>
+		</antcall>
+		
 	</target>
 	
 	

@@ -7,6 +7,11 @@ This will probably be a bit fastly done, not very generic, not perfect : I neede
 
 Changelog
 ---------
+* v0.4.0 :
+	* a fixed formula ;
+	* feedback conditions either true or based on the score ;
+	* backlog and known bugs :
+		* jquery display of overlay is buggy (maybe look at the PhotoSwipe code which mentionned such issues).
 * v0.3 :
 	* with [BrowserQuest](https://github.com/lzbk/BrowserQuest) compliant local storage :
 		* the user can come back to finish their activity ;
@@ -20,5 +25,6 @@ Changelog
 		* settings : in DialogOverlay.initialize(), use the settings
 * v0.1 : Added quizzes…
 	* backlog and known bugs :
-		* lacks mode : "ALL_AT_ONCE"
+		* lacks mode : "ALL_AT_ONCE",
+		* lacks formula handling, and condition handling for global feedback (Edit: and recap)
 

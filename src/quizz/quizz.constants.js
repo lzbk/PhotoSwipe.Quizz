@@ -25,7 +25,9 @@
 						return this[constant];
 					}
 				},
-
+		Feedback: {RE_TEST: /(perm)?\s*(sup|inf)\s*(\d+)/i,
+				   RE_TEXT: /%SCORE%/g
+				},
 		Dialog: {OK: "quizz-overlay-ok",
 				 CLOSE: "quizz-overlay-close",
 				 FINAL: "quizz-overlay-final",
@@ -45,12 +47,12 @@
 		EN: {//English
 			WELL_DONE: "Well done!",
 			NOPE: "This answer was not expected",
-			NICE_TRY: "You can only get a score on this activity once… But feel free to toy with this quizz as much as you want."
+			NICE_TRY: "You can only get a score on this activity once… Your score will remain %SCORE%, but feel free to toy with this quizz as much as you want."
 		},
 		FR: {//French
 			WELL_DONE: "Bien joué !",
 			NOPE: "Nous n'attendions pas cette réponse",
-			NICE_TRY: "Vous ne pouvez être évalué sur cette activité qu'une fois… mais n'hésitez pas à re-jouer pour le plaisir."
+			NICE_TRY: "Vous ne pouvez être évalué sur cette activité qu'une fois… votre score restera %SCORE%, mais n'hésitez pas à re-jouer pour le plaisir."
 		}
 	};
 }

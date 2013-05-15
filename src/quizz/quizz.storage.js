@@ -24,7 +24,7 @@
 			if(this.hasLocalStorage() && localStorage.data) {
 				tmp = JSON.parse(localStorage.data);
 				if(typeof tmp.quizzes !== "undefined"){
-					if (tmp.quizzes[quizzID] !== "undefined"){
+					if (typeof tmp.quizzes[quizzID] !== "undefined"){
 						retval = tmp.quizzes[quizzID];
 					}
 				}
@@ -44,14 +44,26 @@
 			}
 		},
 		
-		updateTraces: function(quizzID, traces){
+		update: function(quizzID, traces, score, complete){
 			var tmp;
 			if(this.hasLocalStorage() && localStorage.data) {
 				tmp = JSON.parse(localStorage.data);
 				if(typeof tmp.quizzes === "undefined"){
-					tmp.quizzes = {};
+					throw("Code.Quizz.Storage.update called on an empty local storage for quizz #"+quizzID);
 				}
 				tmp.quizzes[quizzID].traces = traces;
+				tmp.quizzes[quizzID].score = score;
+				tmp.quizzes[quizzID].complete = complete;
+				localStorage.data = JSON.stringify(tmp);
+			}
+		},
+		
+		reset: function(quizzID){
+			if(this.hasLocalStorage() && localStorage.data) {
+				tmp = JSON.parse(localStorage.data);
+				if(typeof tmp.quizzes !== "undefined"){
+					tmp.quizzes[quizzID] = undefined;
+				}
 				localStorage.data = JSON.stringify(tmp);
 			}
 		}

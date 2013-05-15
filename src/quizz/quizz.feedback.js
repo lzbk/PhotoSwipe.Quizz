@@ -12,6 +12,7 @@
 	Quizz.Feedback = klass({
 		text: null,
 		condition: null,
+		score: false,
 				
 		
 		initialize: function(text, condition){
@@ -25,7 +26,7 @@
 		},
 		
 		checkCondition: function(condition){
-			return true;//TODO
+			return (condition===true) || (typeof condition.match(Quizz.CONSTANTS.Feedback.RE_TEST) !== undefined);//TODO
 		},
 		
 		/**
@@ -33,12 +34,28 @@
 		 * #id in the formula will be evaluated to true if in selectedIds
 		 * false otherwise
 		 */
-		testCondition: function(selectedIds){
-			return true;//TODO
+		testCondition: function(quizz){
+			if(this.condition===true){ return true; }
+			else {
+				var args = this.condition.match(Quizz.CONSTANTS.Feedback.RE_TEST);
+				if((args[1]=="perm") && (typeof quizz.storedScore !== "undefined")){
+					this.score = quizz.storedScore;
+				}
+				if(this.score === false){
+					this.score = quizz.computeScore();
+				}
+				if(args[2]=="inf"){
+					return this.score < parseInt(args[3], 10);
+				}
+				else{
+					return this.score > parseInt(args[3], 10);
+				}
+			}
+			return this.condition(quizz);//TODO
 		},
 		
-		getText: function(){
-			return this.text;//TODO
+		getText: function(quizz){
+			return this.text.replace(Quizz.CONSTANTS.Feedback.RE_TEXT, this.score);//TODO
 		}
 		
 	});

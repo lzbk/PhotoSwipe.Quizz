@@ -23,8 +23,9 @@
 		traces: false,
 		globalFeedback: [],
 		alreadyCompleted: false,
+		storedScore: false,
 		repeatable: false,
-		recap: [],
+		recap: [],//updated even when already completed, must be taken into account when writing recaps
 		scoreFormula: null,
 		
 		dispose: function(){
@@ -71,36 +72,35 @@
 			
 			if(this.alreadyCompleted){
 				if(!this.repeatable){
-					this.overlay.show(Quizz.CONSTANTS.Dialog.CLOSE, "<p>" + Quizz.MESSAGES[this.language].NICE_TRY+ "</p>");
+					this.overlay.show(Quizz.CONSTANTS.Dialog.CLOSE, "<p>" + Quizz.MESSAGES[this.language].NICE_TRY.replace(Quizz.CONSTANTS.Feedback.RE_TEXT, this.storedScore)+ "</p>");
 				}
 				this.selection = [];
 			}
 		},
 		
 		//to keep some data…
-		save: function(score, recap){
-			if(typeof score === "undefined"){
-				score = false;
-				recap = false;
-			}
-			else if(typeof recap === "undefined"){
-				recap = false;
-			}
-			if(this.alreadyCompleted && !this.repeatable){
+		save: function(){
+			if(this.alreadyCompleted && !this.repeatable){//if complete we only update the traces and make sure to keep the stored score
 				if(this.traces !== false){
 					this.addTrace("Q", new Date().valueOf(), 'save after retry');
-					Quizz.Storage.updateTraces(this.id, this.traces);
 				}
+				Quizz.Storage.update(this.id, this.traces, this.storedScore);
 			}
 			else{
+				var temp={complete:false};
+				temp.score = this.computeScore();
+				if(this.isOver()){
+					temp.complete = true;
+					temp.recap = this.createRecap();
+				}
+				else if(this.alreadyCompleted){
+					temp.complete = true;
+				}
 				if(this.traces !== false){
 					this.addTrace("Q", new Date().valueOf(), 'save');
 				}
-				var temp = {
-					score: score,
-					recap: recap,
-					selection: this.selection,
-					traces: this.traces};
+				temp.selection = this.selection;
+				temp.traces = this.traces;
 				Quizz.Storage.storeQuizz(this.id, temp);
 			}
 		},
@@ -112,12 +112,11 @@
 				if(temp.traces  !== false){
 					this.traces = new Quizz.Traces();
 					this.traces.fill(temp.traces);
-				}
-				if(this.traces !== false){
 					this.addTrace("Q", new Date().valueOf(), 'load');
 				}
-				if(temp.score !== false || temp.recap !== false){
+				if(temp.complete !== false){
 					this.alreadyCompleted = true;
+					this.storedScore = temp.score;
 				}
 			}
 		},
@@ -145,7 +144,19 @@
 		},
 		
 		computeScore: function(){
-			return 1;//TODO
+			var retval, sign;
+			if(this.isOver()){
+				retval = 10;
+			}
+			else{retval=0;}
+			for(var i=0; i < this.selection.length; i++){
+				if(this.answers[this.selection[i]].getStatus()){
+					sign =  1;
+				}
+				else{sign=-1;}
+				retval += (this.answers[this.selection[i]].getWeight()*sign);
+			}
+			return retval;
 		},
 		
 		//parameters : see Util.DOM.find function…
@@ -196,13 +207,12 @@
 			else{
 				retval = Quizz.MESSAGES[this.language].NOPE;
 			}
+			this.save();
 			if(this.isOver()){
-				this.save(this.computeScore, this.createRecap());
 				this.overlay.show(Quizz.CONSTANTS.Dialog.OK, "<p>" + retval+ "<br/>" + this.answers[id].getFeedback() + "</p>",
 					function(){self.overlay.show(Quizz.CONSTANTS.Dialog.FINAL, self.createGlobalFeedback());});
 			}
 			else{
-				this.save();
 				this.overlay.show(Quizz.CONSTANTS.Dialog.OK, "<p>" + retval+ "<br/>" + this.answers[id].getFeedback() + "</p>");
 			}
 			
@@ -236,8 +246,8 @@
 		createGlobalFeedback: function(){
 			var retval="", l=this.globalFeedback.length;
 			for(var i=0;i<l;i++){
-				if(this.globalFeedback[i].testCondition(this.selected())){
-					retval += "\n"+this.globalFeedback[i].getText();
+				if(this.globalFeedback[i].testCondition(this)){
+					retval += "<br />"+this.globalFeedback[i].getText(this);
 				}
 			}
 			return retval;
@@ -246,8 +256,8 @@
 		createRecap: function(){
 			var retval=[], l=this.recap.length;
 			for(var i=0;i<l;i++){
-				if(this.recap[i].testCondition(this.selected())){
-					retval.push(this.recap[i].getText());
+				if(this.recap[i].testCondition(this)){
+					retval.push(this.recap[i].getText(this));
 				}
 			}
 			return retval;
