@@ -1,9 +1,17 @@
 This is a fork of PhotoSwipe that is used to create image based quizzes
 =======================================================================
 
-If you want the real PhotoSwipe without my added bugs and functionnalities go [there](https://github.com/codecomputerlove/PhotoSwipe)
+This fork (and the one it forks from) was designed and implemented at the LIRIS lab (http://liris.cnrs.fr) in the course of the Janus project, sponsored by the IMU Labex (http://imu.universite-lyon.fr/).
 
-This will probably be a bit fastly done, not very generic, not perfect : I needed the functionnality for another project, but if someone needs something of the sort feel free to make it better (remember to let her into your heart, though).
+Use
+---
+This uses apache ant (just like PhotoSwipe) to create reduced .js files. All the code is to be written in the source, then “compiled” :
+* either using build.sh (full build)
+* or fastbuild.sh (which removes some actions, to be used for testing)
+
+Each build uses the build.properties file to get the version and other info. The result is provided in the release folder thus generated, which contains the libraries and a set of examples.
+
+As the examples show, the creation of a quizz uses a data.json file which contains links to images…
 
 Changelog
 ---------
@@ -12,6 +20,7 @@ Changelog
 	* feedback conditions either true or based on the score ;
 	* backlog and known bugs :
 		* jquery display of overlay is buggy (maybe look at the PhotoSwipe code which mentionned such issues).
+		* create new answer version with true/false for each image…
 * v0.3 :
 	* with [BrowserQuest](https://github.com/lzbk/BrowserQuest) compliant local storage :
 		* the user can come back to finish their activity ;
