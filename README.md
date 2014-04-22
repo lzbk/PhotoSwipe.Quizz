@@ -22,7 +22,7 @@ Changelog
 		* jquery display of overlay is buggy (maybe look at the PhotoSwipe code which mentionned such issues).
 		* create new answer version with true/false for each image…
 * v0.3 :
-	* with [BrowserQuest](https://github.com/lzbk/BrowserQuest) compliant local storage :
+	* with [BrowserQuest](https://github.com/janus-IMU/BrowserQuest) compliant local storage :
 		* the user can come back to finish their activity ;
 		* possibility to prevent users from repeating the test and getting an evaluation (unless they erase their local storage);
 	* "multilingual" ;
